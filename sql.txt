@@ -1,0 +1,7 @@
+CREATE TABLE recipe (
+	recipe_name VARCHAR (255) UNIQUE NOT NULL,
+	protein_count INT NOT NULL,
+	carb_count INT NOT NULL,
+	fat_count INT NOT NULL,
+	calorie_count INT NOT NULL
+);

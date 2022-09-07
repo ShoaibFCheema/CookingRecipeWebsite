@@ -1,0 +1,61 @@
+[
+    {
+        "id": "1",
+        "name": "Chicken Fried Rice",
+        "protein": 73,
+        "image": "/image/chickenfriedrice.jpg",
+        "link": "https://www.youtube.com/watch?v=jvvAP7UVxIs&t=556s"
+    },
+    {
+        "id": "2",
+        "name": "Chicken Green Beans",
+        "protein": 50,
+        "image": "/image/chickenfriedrice.jpg",
+        "link": ""
+    },
+    {
+        "id": "3",
+        "name": "Chicken Tacos",
+        "protein": 25,
+        "image": "/image/chickenfriedrice.jpg",
+        "link": ""
+    },
+    {
+        "id": "4",
+        "name": "Chicken Taquitos",
+        "protein": 100,
+        "image": "/image/chickenfriedrice.jpg",
+        "link": ""
+    },
+    {
+        "id": "5",
+        "name": "Chicken Taquitos",
+        "protein": 100,
+        "image": "/image/chickenfriedrice.jpg",
+        "link": ""
+    },
+    {
+        "id": "6",
+        "name": "Chicken Taquitos",
+        "protein": 100,
+        "image": "/image/chickenfriedrice.jpg",
+        "link": ""
+    },
+    {
+        "id": "7",
+        "name": "Chicken Taquitos",
+        "protein": 100,
+        "image": "/image/chickenfriedrice.jpg",
+        "link": ""
+    },
+    {
+        "id": "8",
+        "name": "Chicken Taquitos",
+        "protein": 100000,
+        "image": "/image/chickenfriedrice.jpg",
+        "link": ""
+    }
+
+
+
+]
