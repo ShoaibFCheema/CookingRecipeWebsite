@@ -28,6 +28,9 @@ app.get("/api", async (req, res) => {
     res.json(data);
   });
 
+app.post("/api", (req, res) => {
+  res.send("Post request called")
+})
 
 app.listen(PORT, () => {
     console.log('Server listening on ', PORT);

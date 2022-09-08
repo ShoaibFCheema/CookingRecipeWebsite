@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
-import List from './List';
-import Recipe from './Recipe';
+//import List from './List';
+//import Recipe from './Recipe';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import './RecipeIndex.css'
@@ -22,8 +22,30 @@ function RecipeIndex() {
         navigate("/")
     }
 
+    async function sendData() {
+        const datatest = {
+            "recipe_name": "This was added from frontend",
+            "protein_count": 100,
+            "carb_count": 1000,
+            "fat_count": 25,
+            "calorie_count": 2000
+        }
+
+        await fetch("/api", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'no-cors',
+            body: JSON.stringify(datatest)
+        })
+
+        setData(prev => [...prev, datatest])
+    }
+
     return(
         <div className='flex-container'>
+            <Button classname="Button" text="Add Recipe" onClick={sendData} />
             <h1 style={{textAlign: 'center'}} className="item1">Recipe Index</h1>
             <Button classname="Button" text="Main Page" onClick={mainPageClicked} />
             <table className='table'>
@@ -42,11 +64,9 @@ function RecipeIndex() {
                 {
                     data && data.map(recipes => {
                         return(
-                            <tr>
+                            <tr key={recipes.id}>
                                 <td className='td'>
-                                    <a  target="_blank">
-                                        <img  alt={recipes.recipe_name} className="image" />
-                                    </a>
+                                    <img  alt={recipes.recipe_name} className="image" />
                                 </td>
                                 <td className='td'>
                                     <p>{recipes.recipe_name}</p>
