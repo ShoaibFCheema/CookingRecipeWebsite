@@ -5,6 +5,7 @@ import Button from './Button';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import './RecipeIndex.css'
+import axios from "axios";
 
 function RecipeIndex() {
 
@@ -13,9 +14,10 @@ function RecipeIndex() {
     const [data, setData] = useState(null);
 
     React.useEffect(() => {
-        fetch("/api")
-        .then((res) => res.json())
-        .then((data) => setData(data));
+        axios.get("http://localhost:5000/api")
+            .then(res => {
+                setData(res.data);
+            })
     }, []);
 
     function mainPageClicked() {
@@ -24,23 +26,20 @@ function RecipeIndex() {
 
     async function sendData() {
         const datatest = {
-            "recipe_name": "This was added from frontend",
+            "recipe_name": "This was not added from frontend",
             "protein_count": 100,
             "carb_count": 1000,
             "fat_count": 25,
-            "calorie_count": 2000
+            "calorie_count": 21
         }
 
-        await fetch("/api", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            mode: 'no-cors',
-            body: JSON.stringify(datatest)
-        })
-
-        setData(prev => [...prev, datatest])
+        let stop = null;
+        await axios.post("http://localhost:5000/api", datatest)
+            .then(res => {
+                if (res.data) {
+                    setData([... data, datatest]);
+                }
+            });
     }
 
     return(
