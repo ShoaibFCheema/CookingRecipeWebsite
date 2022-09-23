@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import Header from './components/Header';
-import Recipe from './components/Recipe';
 import RecipeIndex from './components/RecipeIndex';
 
 

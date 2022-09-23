@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
-//import List from './List';
-//import Recipe from './Recipe';
+import RTableElements from './RTableElements';
+
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import './RecipeIndex.css'
@@ -44,39 +44,27 @@ function RecipeIndex() {
 
     return(
         <div className='flex-container'>
-            <Button classname="Button" text="Add Recipe" onClick={sendData} />
             <h1 style={{textAlign: 'center'}} className="item1">Recipe Index</h1>
             <Button classname="Button" text="Main Page" onClick={mainPageClicked} />
+            <Button classname="Button" text="Add Recipe" onClick={sendData} />
             <table className='table'>
                 <tbody>
                     <tr>
-                        <td className='td'>
-                            <b>Recipes</b>
-                        </td>
-                        <td className='td'>
-                            <b>Name</b>
-                        </td>
-                        <td className='td'>
-                            <b>Protein</b>
-                        </td>
-                    </tr>
                 {
                     data && data.map(recipes => {
                         return(
-                            <tr key={recipes.id}>
                                 <td className='td'>
-                                    <img  alt={recipes.recipe_name} className="image" />
+                                    <RTableElements name={recipes.recipe_name} 
+                                        calories={recipes.calorie_count} 
+                                        protein={recipes.protein_count}
+                                        carb={recipes.carb_count}
+                                        fat={recipes.fat_count}
+                                    />
                                 </td>
-                                <td className='td'>
-                                    <p>{recipes.recipe_name}</p>
-                                </td>
-                                <td className='td'>
-                                    <p>{recipes.protein_count}g</p>
-                                </td>
-                             </tr>
                         )
                     })
                 }
+                    </tr>
                 </tbody>
             </table>
         </div>
