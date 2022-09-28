@@ -1,17 +1,46 @@
 import React from "react";
-import './RecipeIndex.css'
+import './RTableElements.css'
+
 
 function RTableElements({name, calories, protein, carb, fat}) {
 
 
     return (
-        <div>
-            <img className='image' src="/image/chickenfriedrice.jpg" alt="Picture goes here" />
-            <p> Name: {name} </p>
-            <p> Calories: {calories}g</p>
-            <p> Protein: {protein}g</p>
-            <p> Carb: {carb}g</p>
-            <p> Fat: {fat}g</p>
+        <div id="elementdiv">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="/image/chickenfriedrice.jpg" alt="rice" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 
+                            Name: {name} 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Calories: {calories}g 
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            Protein: {protein}g
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            Carb: {carb}g
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 
+                            Fat: {fat}g
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 }

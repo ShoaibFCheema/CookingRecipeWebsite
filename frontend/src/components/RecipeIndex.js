@@ -13,6 +13,8 @@ function RecipeIndex() {
 
     const [data, setData] = useState(null);
 
+    const[givenRecipe, setNewRecipe] = useState({});
+
     React.useEffect(() => {
         axios.get("http://localhost:5000/api")
             .then(res => {
@@ -24,49 +26,89 @@ function RecipeIndex() {
         navigate("/")
     }
 
-    async function sendData() {
-        const datatest = {
-            "recipe_name": "This was not added from frontend",
-            "protein_count": 100,
-            "carb_count": 1000,
-            "fat_count": 25,
-            "calorie_count": 21
-        }
+    async function sendData(e) {
+        e.preventDefault();
 
-        let stop = null;
-        await axios.post("http://localhost:5000/api", datatest)
+        await axios.post("http://localhost:5000/api", givenRecipe)
             .then(res => {
                 if (res.data) {
-                    setData([... data, datatest]);
+                    setData([... data, givenRecipe]);
                 }
+                console.log(false, "Error occurred");
             });
+        
+        setNewRecipe({});
+    }
+
+    function handleChange(e) {
+        e.preventDefault();
+        let newElement = {};
+        let key = e.target.name;
+        let value = e.target.value;
+        if (key != "recipe_name") {
+            value = parseInt(value);
+        }
+        newElement={
+            [key]:value
+        };
+        setNewRecipe({
+            ...givenRecipe,
+            ...newElement
+        });
     }
 
     return(
-        <div className='flex-container'>
-            <h1 style={{textAlign: 'center'}} className="item1">Recipe Index</h1>
+        <div id="maindiv">
+            <h1 style={{textAlign: 'center', fontFamily: 'sans-serif', color: 'white'}} className="item1">Recipe Index</h1>
             <Button classname="Button" text="Main Page" onClick={mainPageClicked} />
-            <Button classname="Button" text="Add Recipe" onClick={sendData} />
-            <table className='table'>
-                <tbody>
-                    <tr>
-                {
+            
+            <section id="mainsection">
+                
+                <section id="recipeaddsection">
+                    <article id="formarticle">
+                        <form>
+                            <label>
+                                Recipe Name:
+                                <input type="text" name="recipe_name" onChange={e => handleChange(e)}/>
+                            </label>
+                            <label>
+                                # of Calories:
+                                <input type="number" name="calorie_count" onChange={e => handleChange(e)}/>
+                            </label>
+                            <label>
+                                # of Protein:
+                                <input type="number" name="protein_count" onChange={e => handleChange(e)}/>
+                            </label>
+                            <label>
+                                # of Carbohydrates:
+                                <input type="number" name="carb_count" onChange={e => handleChange(e)}/>
+                            </label>
+                            <label>
+                                # of Fats:
+                                <input type="number" name="fat_count" onChange={e => handleChange(e)}/>
+                            </label>
+                            <Button classname="Button" text="Add Recipe" onClick={e => sendData(e)} />
+                        </form>
+                    </article>
+                </section>
+
+                <section id="recipesection">
+                {  
                     data && data.map(recipes => {
-                        return(
-                                <td className='td'>
-                                    <RTableElements name={recipes.recipe_name} 
-                                        calories={recipes.calorie_count} 
-                                        protein={recipes.protein_count}
-                                        carb={recipes.carb_count}
-                                        fat={recipes.fat_count}
-                                    />
-                                </td>
-                        )
+                            return(
+                                    <article id="recipearticle">
+                                        <RTableElements name={recipes.recipe_name} 
+                                            calories={recipes.calorie_count} 
+                                            protein={recipes.protein_count}
+                                            carb={recipes.carb_count}
+                                            fat={recipes.fat_count}
+                                        />
+                                    </article>
+                            )
                     })
                 }
-                    </tr>
-                </tbody>
-            </table>
+                </section>
+            </section>
         </div>
     );
 

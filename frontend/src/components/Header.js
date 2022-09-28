@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Button from './Button';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Header.css'
 
 function Header() {
@@ -25,7 +25,7 @@ function Header() {
                 <Button classname="Button" text="Recipe Index" onClick={recipeIndexClicked} />
             </div>
             <div className='pic1'>
-                <img src="/image/chickenfriedrice.jpg"/>
+                <img src="/image/chickenfriedrice.jpg" alt="rice" />
             </div>
             <div className='body'>
                 <p className='h1'>
@@ -33,7 +33,7 @@ function Header() {
                 </p>
             </div>
             <div className='pic2'>
-                <img src="/image/chickenfriedrice.jpg"/>
+                <img src="/image/chickenfriedrice.jpg" alt="rice"/>
             </div>
             <div className='body2'>
                 <p className="h1">
@@ -41,7 +41,7 @@ function Header() {
                 </p>
             </div>
             <div className='pic3'>
-                <img src="/image/chickenfriedrice.jpg"/>
+                <img src="/image/chickenfriedrice.jpg" alt="rice"/>
             </div>
             <div className='body3'>
                 <p className="h1">
